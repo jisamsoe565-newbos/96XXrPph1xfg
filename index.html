@@ -1,510 +1,258 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#07090d">
   <title>Freaky Leaks</title>
-
-  <meta
-    name="description"
-    content="Freaky Leaks — choose an available viewing option below."
-  >
 
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Helvetica,
-        Arial,
-        sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    html {
-      background: #07090d;
+    html, body {
+      width: 100%;
+      min-height: 100%;
     }
 
     body {
-      min-height: 100vh;
-
       background:
-        radial-gradient(
-          circle at 50% 0%,
-          rgba(88, 101, 125, 0.16),
-          transparent 42%
-        ),
-        #07090d;
-
+        radial-gradient(circle at 50% -10%, rgba(34,197,94,.10), transparent 38%),
+        linear-gradient(180deg, #07090d 0%, #0b0f15 100%);
       color: #fff;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      padding: 18px 14px;
-
+      padding: 18px 12px 24px;
       overflow-x: hidden;
     }
 
     .container {
       width: 100%;
       max-width: 480px;
-      margin: auto;
+      margin: 0 auto;
     }
 
-    /* =========================
-       MAIN CARD
-    ========================== */
-
-    .card {
-      width: 100%;
-
-      background: rgba(15, 18, 24, 0.98);
-
-      border: 1px solid rgba(255, 255, 255, 0.08);
-
+    .post {
+      background: rgba(15, 18, 24, .96);
+      border: 1px solid rgba(255,255,255,.08);
       border-radius: 22px;
-
       overflow: hidden;
-
-      box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.55),
-        0 8px 30px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 24px 60px rgba(0,0,0,.48);
     }
-
-    /* =========================
-       COVER
-    ========================== */
 
     .cover {
       position: relative;
-
       width: 100%;
-
       aspect-ratio: 16 / 9;
-
       background: #000;
-
       overflow: hidden;
+    }
+
+    .cover::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.35) 100%);
+      pointer-events: none;
     }
 
     .cover img {
       width: 100%;
       height: 100%;
-
       display: block;
-
       object-fit: cover;
-
-      opacity: 0.95;
-
-      user-select: none;
-      -webkit-user-drag: none;
     }
-
-    .cover::after {
-      content: "";
-
-      position: absolute;
-
-      inset: 0;
-
-      background:
-        linear-gradient(
-          to bottom,
-          transparent 55%,
-          rgba(0, 0, 0, 0.42)
-        );
-
-      pointer-events: none;
-    }
-
-    /* =========================
-       CONTENT
-    ========================== */
 
     .content {
-      padding: 22px 20px 18px;
+      padding: 20px 18px 18px;
     }
-
-    /* =========================
-       BRAND
-    ========================== */
 
     .brand {
       display: flex;
-
       align-items: center;
-
       gap: 9px;
-
-      margin-bottom: 13px;
+      margin-bottom: 15px;
     }
 
     .brand-dot {
-      width: 8px;
-      height: 8px;
-
-      flex-shrink: 0;
-
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
-
       background: #22c55e;
-
-      box-shadow:
-        0 0 0 4px rgba(34, 197, 94, 0.09),
-        0 0 12px rgba(34, 197, 94, 0.45);
+      box-shadow: 0 0 14px rgba(34,197,94,.8);
+      flex: 0 0 auto;
     }
 
     .brand-name {
-      color: #aeb7c6;
-
-      font-size: 11px;
-
+      font-size: 13px;
       font-weight: 700;
+      letter-spacing: .35px;
+      color: #dbe4ee;
+    }
 
-      letter-spacing: 0.11em;
-
+    .status {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(34,197,94,.08);
+      border: 1px solid rgba(34,197,94,.18);
+      color: #86efac;
+      font-size: 10px;
+      font-weight: 700;
       text-transform: uppercase;
+      letter-spacing: .45px;
     }
 
-    /* =========================
-       TITLE
-    ========================== */
+    .status i {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 7px #22c55e;
+    }
 
-    .heading {
-      color: #ffffff;
-
-      font-size: 21px;
-
-      line-height: 1.3;
-
-      font-weight: 700;
-
-      letter-spacing: -0.025em;
-
+    h1 {
+      font-size: 22px;
+      line-height: 1.2;
+      font-weight: 750;
+      letter-spacing: -.35px;
       margin-bottom: 8px;
+      color: #f8fafc;
     }
 
-    .description {
-      color: #8e97a7;
-
-      font-size: 14px;
-
-      line-height: 1.6;
-
-      margin-bottom: 20px;
+    .subtitle {
+      color: #94a3b8;
+      font-size: 13px;
+      line-height: 1.55;
+      margin-bottom: 18px;
     }
 
-    /* =========================
-       OPTIONS
-    ========================== */
-
-    .options {
+    .links-group {
       display: flex;
-
       flex-direction: column;
-
       gap: 10px;
     }
 
-    .option {
+    .link {
       position: relative;
-
-      width: 100%;
-
-      min-height: 55px;
-
       display: flex;
-
       align-items: center;
-
-      justify-content: space-between;
-
-      padding: 11px 14px;
-
-      border-radius: 13px;
-
+      min-height: 54px;
+      padding: 10px 13px;
+      border-radius: 14px;
       text-decoration: none;
-
-      color: #ffffff;
-
-      background: #151922;
-
-      border: 1px solid rgba(255, 255, 255, 0.08);
-
-      transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
-
-      -webkit-tap-highlight-color: transparent;
+      color: #f8fafc;
+      background: #151a22;
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
     }
 
-    .option:hover {
-      background: #1b2029;
+    .link:active {
+      transform: scale(.985);
+    }
 
-      border-color: rgba(255, 255, 255, 0.15);
-
+    .link:hover {
       transform: translateY(-1px);
+      border-color: rgba(255,255,255,.15);
+      background: #191f28;
     }
 
-    .option:active {
-      transform: scale(0.99);
-    }
-
-    /* =========================
-       OPTION MAIN
-    ========================== */
-
-    .option-main {
-      display: flex;
-
-      align-items: center;
-
-      gap: 12px;
-
-      min-width: 0;
+    .link.primary {
+      background: linear-gradient(180deg, #1b222b 0%, #141920 100%);
+      border-color: rgba(255,255,255,.13);
     }
 
     .icon {
-      width: 33px;
-      height: 33px;
-
-      flex-shrink: 0;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 9px;
-
-      background: rgba(255, 255, 255, 0.07);
-
-      color: #f8fafc;
-
-      font-size: 13px;
-
-      font-weight: 700;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      margin-right: 11px;
+      background: rgba(255,255,255,.07);
+      font-size: 15px;
+      flex: 0 0 auto;
     }
 
-    .option-text {
+    .primary .icon {
+      background: rgba(34,197,94,.13);
+      color: #4ade80;
+    }
+
+    .button-text {
       min-width: 0;
-
-      display: flex;
-
-      flex-direction: column;
-
-      gap: 2px;
+      flex: 1;
     }
 
-    .option-title {
-      color: #f8fafc;
-
+    .button-title {
+      display: block;
       font-size: 14px;
-
-      line-height: 1.3;
-
-      font-weight: 650;
+      font-weight: 700;
+      line-height: 1.25;
     }
 
-    .option-subtitle {
-      color: #737d8d;
-
-      font-size: 11px;
-
-      line-height: 1.3;
+    .button-sub {
+      display: block;
+      margin-top: 2px;
+      font-size: 10px;
+      color: #7f8b9b;
+      line-height: 1.25;
     }
 
     .arrow {
-      flex-shrink: 0;
-
-      margin-left: 10px;
-
-      color: #697383;
-
-      font-size: 21px;
-
-      line-height: 1;
-
-      transition:
-        transform 0.2s ease,
-        color 0.2s ease;
+      color: #64748b;
+      font-size: 17px;
+      margin-left: 8px;
     }
 
-    .option:hover .arrow {
-      color: #aeb7c6;
-
-      transform: translateX(2px);
-    }
-
-    /* =========================
-       PRIMARY OPTION
-    ========================== */
-
-    .option.primary {
-      background:
-        linear-gradient(
-          135deg,
-          #202630 0%,
-          #151922 100%
-        );
-
-      border-color: rgba(255, 255, 255, 0.13);
-    }
-
-    .option.primary .icon {
-      background: rgba(255, 255, 255, 0.11);
-    }
-
-    /* =========================
-       INFO BAR
-    ========================== */
-
-    .info {
+    .meta {
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
-      flex-wrap: wrap;
-
       gap: 8px;
-
-      margin-top: 18px;
-
-      padding-top: 15px;
-
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-
-      color: #707988;
-
+      margin-top: 17px;
+      padding: 10px 8px;
+      border-top: 1px solid rgba(255,255,255,.07);
+      color: #718096;
       font-size: 10px;
-
-      font-weight: 500;
-
-      letter-spacing: 0.01em;
+      font-weight: 600;
     }
 
-    .info .separator {
-      opacity: 0.4;
+    .meta span {
+      white-space: nowrap;
     }
-
-    /* =========================
-       FOOTER
-    ========================== */
 
     .footer {
-      padding: 0 20px 18px;
-
       text-align: center;
-
-      color: #505867;
-
-      font-size: 10px;
-
-      line-height: 1.5;
+      margin-top: 12px;
+      color: #4f5b6b;
+      font-size: 9px;
+      letter-spacing: .2px;
     }
-
-    /* =========================
-       MOBILE
-    ========================== */
-
-    @media (max-width: 480px) {
-
-      body {
-        padding: 10px 11px;
-
-        align-items: flex-start;
-      }
-
-      .container {
-        margin-top: 7px;
-      }
-
-      .card {
-        border-radius: 18px;
-      }
-
-      .content {
-        padding: 19px 16px 16px;
-      }
-
-      .heading {
-        font-size: 19px;
-      }
-
-      .description {
-        font-size: 13px;
-
-        margin-bottom: 17px;
-      }
-
-      .option {
-        min-height: 53px;
-
-        padding: 10px 13px;
-      }
-
-      .option-title {
-        font-size: 13.5px;
-      }
-
-      .option-subtitle {
-        font-size: 10.5px;
-      }
-
-      .info {
-        font-size: 9.5px;
-
-        gap: 7px;
-      }
-
-      .footer {
-        padding-bottom: 15px;
-      }
-    }
-
-    /* =========================
-       VERY SMALL DEVICES
-    ========================== */
 
     @media (max-width: 360px) {
-
       body {
-        padding-left: 8px;
-        padding-right: 8px;
+        padding-left: 9px;
+        padding-right: 9px;
       }
 
       .content {
-        padding-left: 13px;
-        padding-right: 13px;
+        padding: 17px 14px 15px;
       }
 
-      .heading {
-        font-size: 18px;
+      h1 {
+        font-size: 20px;
       }
 
-      .description {
-        font-size: 12.5px;
-      }
-
-      .option {
-        padding-left: 11px;
-        padding-right: 11px;
+      .status {
+        font-size: 9px;
       }
     }
   </style>
@@ -512,211 +260,110 @@
 
 <body>
 
-  <main class="container">
-
-    <section class="card">
-
-      <!-- =========================
-           COVER IMAGE
-      ========================== -->
+  <div class="container">
+    <main class="post">
 
       <div class="cover">
-
         <img
           src="https://i.imgur.com/Ue4hWlv.jpeg"
-          alt="Freaky Leaks preview"
+          alt="Freaky Leaks video thumbnail"
           loading="eager"
-          decoding="async"
-          draggable="false"
         >
-
       </div>
-
-
-      <!-- =========================
-           CONTENT
-      ========================== -->
 
       <div class="content">
 
-        <!-- BRAND -->
-
         <div class="brand">
-
           <span class="brand-dot"></span>
+          <span class="brand-name">Freaky Leaks</span>
 
-          <span class="brand-name">
-            Freaky Leaks
+          <span class="status">
+            <i></i> Available
           </span>
-
         </div>
 
+        <h1>Choose a viewing option</h1>
 
-        <!-- TITLE -->
-
-        <h1 class="heading">
-          Choose your viewing option
-        </h1>
-
-        <p class="description">
-          Select an available option below to continue.
+        <p class="subtitle">
+          Select one of the available options below to continue.
         </p>
 
-
-        <!-- OPTIONS -->
-
-        <div class="options">
-
-
-          <!-- PRIMARY OPTION -->
+        <div class="links-group">
 
           <a
-            class="option primary"
+            class="link primary"
             href="https://sb.inveilfunds.com/iEb6kwkDhl0br2AX/148285"
             target="_blank"
             rel="noopener noreferrer"
           >
-
-            <div class="option-main">
-
-              <div class="icon">
-                ▶
-              </div>
-
-              <div class="option-text">
-
-                <span class="option-title">
-                  Watch Full Version
-                </span>
-
-                <span class="option-subtitle">
-                  Recommended option
-                </span>
-
-              </div>
-
-            </div>
-
-            <span class="arrow">
-              ›
+            <span class="icon">▶</span>
+            <span class="button-text">
+              <span class="button-title">Full Version</span>
+              <span class="button-sub">Recommended viewing option</span>
             </span>
-
+            <span class="arrow">›</span>
           </a>
 
-
-          <!-- ALTERNATIVE OPTION -->
-
           <a
-            class="option"
+            class="link"
             href="https://x-hubb.github.io/L0oksmn1/"
             target="_blank"
             rel="noopener noreferrer"
           >
-
-            <div class="option-main">
-
-              <div class="icon">
-                ↗
-              </div>
-
-              <div class="option-text">
-
-                <span class="option-title">
-                  Alternative Option
-                </span>
-
-                <span class="option-subtitle">
-                  Use if the main option is unavailable
-                </span>
-
-              </div>
-
-            </div>
-
-            <span class="arrow">
-              ›
+            <span class="icon">01</span>
+            <span class="button-text">
+              <span class="button-title">Alternate Server 1</span>
+              <span class="button-sub">Backup viewing option</span>
             </span>
-
+            <span class="arrow">›</span>
           </a>
 
+          <a
+            class="link"
+            href="https://x-hubb.github.io/L0oksmn1/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="icon">02</span>
+            <span class="button-text">
+              <span class="button-title">Alternate Server 2</span>
+              <span class="button-sub">Additional backup option</span>
+            </span>
+            <span class="arrow">›</span>
+          </a>
 
         </div>
 
-
-        <!-- INFO -->
-
-        <div class="info">
-
+        <div class="meta">
           <span>HD Quality</span>
-
-          <span class="separator">•</span>
-
+          <span>•</span>
           <span>Mobile Friendly</span>
-
-          <span class="separator">•</span>
-
+          <span>•</span>
           <span>Fast Loading</span>
-
         </div>
 
       </div>
+    </main>
 
+    <div class="footer">© 2026 Freaky Leaks</div>
+  </div>
 
-      <!-- FOOTER -->
-
-      <div class="footer">
-        © 2026 Freaky Leaks. All rights reserved.
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- ==================================================
-       HISTATS
-       Tetap aktif untuk monitoring visitor / online
-       Jangan ubah ID Histats ini
-  =================================================== -->
-
+  <!-- Histats -->
   <script type="text/javascript">
-
     var _Hasync = _Hasync || [];
-
-    _Hasync.push([
-      'Histats.start',
-      '1,5040681,4,9,110,60,00011111'
-    ]);
-
-    _Hasync.push([
-      'Histats.fasi',
-      '1'
-    ]);
-
-    _Hasync.push([
-      'Histats.track_hits',
-      ''
-    ]);
+    _Hasync.push(['Histats.start', '1,5040681,4,9,110,60,00011111']);
+    _Hasync.push(['Histats.fasi', '1']);
+    _Hasync.push(['Histats.track_hits', '']);
 
     (function() {
-
       var hs = document.createElement('script');
-
       hs.type = 'text/javascript';
-
       hs.async = true;
-
       hs.src = '//s10.histats.com/js15_as.js';
-
-      (
-        document.getElementsByTagName('head')[0] ||
-        document.getElementsByTagName('body')[0]
-      ).appendChild(hs);
-
+      (document.getElementsByTagName('head')[0] ||
+       document.getElementsByTagName('body')[0]).appendChild(hs);
     })();
-
   </script>
 
 </body>
 </html>
-```
